@@ -202,3 +202,22 @@ a:hover {
     height: 100%;
     padding-left: 24px;
 }
+.controls {
+    flex: 1;
+    text-align: right;
+}
+.videoInfo .bottomSection .controls button {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    color: rgba(17, 17, 17, 0.4);
+    font-weight: 500;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.videoInfo .bottomSection .controls button img {
+    height: 20px;
+    width: 20px;
+    margin: 4px 8px 8px 8px;
+}
