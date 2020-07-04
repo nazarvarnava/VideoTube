@@ -1,55 +1,66 @@
 <?php 
 require_once("includes/config.php"); 
+require_once("includes/classes/ButtonProvider.php"); 
 require_once("includes/classes/User.php"); 
 require_once("includes/classes/Video.php"); 
+require_once("includes/classes/VideoGrid.php"); 
+require_once("includes/classes/VideoGridItem.php"); 
 
 $usernameLoggedIn = User::isLoggedIn() ? $_SESSION["userLoggedIn"] : "";
 $userLoggedInObj = new User($con, $usernameLoggedIn);
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VideoTube</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
     <script src="assets/js/commonActions.js"></script>
     <script src="assets/js/userActions.js"></script>
+
 </head>
 <body>
     
-    <div id="pageContainer" class="pageContainer">
-        <div id="mastHeadContainer" class="mastHeadContainer">
+    <div id="pageContainer">
+
+        <div id="mastHeadContainer">
             <button class="navShowHide">
-                <img src="assets/images/icons/menu.png" alt="">
+                <img src="assets/images/icons/menu.png">
             </button>
+
             <a class="logoContainer" href="index.php">
-                <img src="assets/images/icons/VideoTubeLogo.png" alt="" title="logo">
+                <img src="assets/images/icons/VideoTubeLogo.png" title="logo" alt="Site logo">
             </a>
+
             <div class="searchBarContainer">
-                <form class="formBarContainer" action="search.php" method="GET">
-                    <input type="text" class="searchBar" name="term" placeholder="Szukaj...">
+                <form action="search.php" method="GET">
+                    <input type="text" class="searchBar" name="term" placeholder="Search...">
                     <button class="searchButton">
-                        <img src="assets/images/icons/search.png" alt="">
+                        <img src="assets/images/icons/search.png">
                     </button>
                 </form>
             </div>
+
             <div class="rightIcons">
                 <a href="upload.php">
-                    <img class="upload" src="assets/images/icons/upload.png" alt="">
+                    <img class="upload" src="assets/images/icons/upload.png">
                 </a>
                 <a href="#">
-                    <img class="upload" src="assets/images/profilePictures/default.png" alt="">
+                    <img class="upload" src="assets/images/profilePictures/default.png">
                 </a>
             </div>
+
         </div>
-        <div id="sideNavContainer" class="sideNavContainer" style="display:none">
+
+        <div id="sideNavContainer" style="display:none;">
         
         </div>
 
-        <div id="mainSectionContainer" class="mainSectionContainer">
-            <div id="mainContentContainer" class="mainContentContainer">
+        <div id="mainSectionContainer">
+        
+            <div id="mainContentContainer">
