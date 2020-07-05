@@ -1,27 +1,22 @@
-<?php
+<?php 
 require_once("includes/header.php"); 
-require_once("includes/classes/VideoPlayer.php");
-require_once("includes/classes/VideoInfoSection.php");
-require_once("includes/classes/CommentSection.php");
-require_once("includes/classes/Comment.php");
-
+require_once("includes/classes/VideoPlayer.php"); 
+require_once("includes/classes/VideoInfoSection.php"); 
+require_once("includes/classes/Comment.php"); 
+require_once("includes/classes/CommentSection.php"); 
 
 if(!isset($_GET["id"])) {
-    echo "URL is not found";
+    echo "No url passed into page";
     exit();
 }
 
 $video = new Video($con, $_GET["id"], $userLoggedInObj);
 $video->incrementViews();
 ?>
-
-
 <script src="assets/js/videoPlayerActions.js"></script>
 <script src="assets/js/commentActions.js"></script>
 
-
-<div class="watchLeftColumn" style="flex: 1;">
-
+<div class="watchLeftColumn">
 
 <?php
     $videoPlayer = new VideoPlayer($video);
@@ -37,9 +32,13 @@ $video->incrementViews();
 
 </div>
 
-<div class="suggestions" style="max-width: 425px; flex-grow: 1; height: 100%; padding-left: 24px;">
-
+<div class="suggestions">
+    <?php
+    $videoGrid = new VideoGrid($con, $userLoggedInObj);
+    echo $videoGrid->create(null, null, false);
+    ?>
 </div>
+
 
 
 
